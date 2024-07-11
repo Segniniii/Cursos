@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/plantilla :: head">
+        <title th:text="${esModificacion ? 'Modificar Curso' : 'Agregar Curso'}">Curso</title>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card mt-5">
+                        <div class="card-header">
+                            <h3 th:text="${esModificacion ? 'Modificar Curso' : 'Agregar Curso'}"></h3>
+                        </div>
+                        <div class="card-body">
+                            <form th:action="@{/curso/guardar}" th:object="${curso}" method="post">
+                                <!-- Campo para el ID del curso (visible solo en modificación) -->
+                                <div class="mb-3" th:if="${esModificacion}">
+                                    <label for="idCurso" class="form-label">ID</label>
+                                    <input type="text" id="idCurso" th:field="*{idCurso}" class="form-control" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nombreCurso" class="form-label">Nombre</label>
+                                    <input type="text" id="nombreCurso" th:field="*{nombreCurso}" class="form-control" placeholder="Nombre" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="estado" class="form-label">Estado</label>
+                                    <select id="estado" th:field="*{estado}" class="form-control" required>
+                                        <option th:value="Activo">Activo</option>
+                                        <option th:value="Inactivo">Inactivo</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="categoria" class="form-label">Categoria</label>
+                                    <input type="text" id="categoria" th:field="*{categoria}" class="form-control" placeholder="Categoria" required>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <a href="#" th:href="@{/curso/vercursos}" class="btn btn-secondary">Cancelar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

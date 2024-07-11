@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/plantilla :: head">
+        <title>Grupo</title>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                </head>
+                <body>
+                    <!-- Listado de grupos -->
+                    <section th:fragment="Gruposlista" id="Gruposlista">
+
+                        <div class="container my-4">
+                            <div class="row">
+                                <div th:each="grupo : ${grupos}" class="col-md-4 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="text-center">
+                                                <h5 class="card-title">Grupo: <span th:text="${grupo.getIdGrupo()}">Número</span><br /><i class="fa-solid fa-people-group fa-3x"></i></h5>
+
+                                                <p class="card-text">Espacio: <span th:text="${grupo.getEspacio()}">Descripción del espacio</span></p>
+
+                                                <a th:href="@{/estudiante/verEstudiantes}" class="btn btn-primary mr-2">Ver estudiantes</a>
+                                                <a th:href="@{/grupo/eliminar/{idGrupo}(idGrupo=${grupo.idGrupo})}" class="btn btn-danger mr-2">Eliminar</a>
+                                                <a th:href="@{/grupo/modificar/{idGrupo}(idGrupo=${grupo.idGrupo})}" class="btn btn-success mr-2">Modificar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+
+                    <!--  Modificar grupos -->
+                    <section th:fragment="Modificar-Grupo">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4">
+                                <div class="card mt-5">
+                                    <div class="card-header">
+                                        <h3>Modificar grupo</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <h4 class="card-title">Grupo: <span th:text="${grupo.getIdGrupo()}">Número</span></h4>
+                                        </div>
+                                        <form th:action="@{/grupo/guardar}" th:object="${grupo}" method="post">
+                                            <input type="hidden" th:field="*{idGrupo}" />
+
+                                            <div class="mb-3">
+                                                <label for="espacio" class="form-label">Espacio</label>
+                                                <input type="number" id="espacio" th:field="*{espacio}" class="form-control" placeholder="Espacio" required>
+                                            </div>
+
+                                            <div class="d-grid gap-2">
+                                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                                <a href="#" th:href="@{/grupo/vergrupos}" class="btn btn-secondary">Cancelar</a>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Crear grupos -->
+
+                    <!-- Listado de Estudiantes -->
+                    <section th:fragment="listadoEstudiantespor_grupo" id="listadoEstudiantespor_grupo">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="card text-center   mb-3">
+                                        <div class="card-body">
+                                            <h3>Estudiantes</h3>
+                                            <h4 class="fs-2"> [[${totalEstudiantes}]]</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="card">
+
+                                        <div class="card-header">
+                                            <h4>Lista de Estudiantes</h4>
+                                        </div>
+                                        <div th:if="${estudiantes != null and not #lists.isEmpty(estudiantes)}">
+                                            <table class="table table-striped table-hover">
+                                                <thead class="table-primary">
+                                                    <tr>
+                                                        <th>N</th>
+                                                        <th>Nombre</th>
+                                                        <th>Grupo</th>
+                                                        <th>Opciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr th:each="estudiante, contador : ${estudiantes}">
+                                                        <td th:text="${contador.count}">1</td>
+                                                        <td th:text="${estudiante.getNombreEstudiante()}">Nombre Estudiante</td>
+                                                        <td th:text="${estudiante.getIdGrupo()}">grupo del estudiante</td>
+
+                                                        <td>
+                                                            <a th:href="@{/modificar/{idEstudiante}}"
+                                                               class="btn btn-primary">
+                                                                Actualizar</a>
+
+                                                            <a th:href="@{/estudiante/eliminar/{idEstudiante}(idEstudiante=${estudiante.idEstudiante})}"
+                                                               class="btn btn-danger">
+                                                                Eliminar</a>
+
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="text-center p-2" th:if="${estudiantes == null or #lists.isEmpty(estudiantes)}">
+                                            <span>No hay estudiantes.</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                </body>
+                </html>

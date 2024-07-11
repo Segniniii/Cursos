@@ -1,13 +1,55 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="layout/plantilla :: head">
-        <title>principal</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <header th:replace="layout/plantilla :: header"></header>
-        <header th:replace="layout/plantilla :: footer"></header>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/plantilla :: head">
+    <title>Principal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+    <header th:replace="layout/plantilla :: header"></header>
+
+    <div class="container">
+        <div class="jumbotron text-center bg-primary text-white mt-4">
+            <h1 class="display-4">Bienvenido a Cursos Online</h1>
+            <p class="lead">Descubre los mejores cursos para tu desarrollo profesional.</p>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Grupos</h5>
+                        <p class="card-text">Únete a grupos de estudio y colabora con otros estudiantes.</p>
+                        <a class="btn btn-primary" th:href="@{/grupo/vergrupos}">Ver Grupos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Profesores</h5>
+                        <p class="card-text">Conoce a nuestros profesores altamente calificados.</p>
+                        <a class="btn btn-primary" th:href="@{/profesor/verprofesores}">Ver Profesores</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Cursos</h5>
+                        <p class="card-text">Explora nuestra variedad de cursos disponibles.</p>
+                        <a class="btn btn-primary" th:href="@{/curso/vercursos}">Ver Cursos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="layout/plantilla :: footer"></footer>
+</body>
 </html>

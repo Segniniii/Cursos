@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/plantilla :: head">
+    <title>Cursos</title>
+</head>
+<body>
+    <header th:replace="layout/plantilla :: header"></header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-5">
+                <h2>Cursos</h2>
+                <a href="#" th:href="@{a}" class="btn btn-primary mb-3">Agregar Curso</a>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Estado</th>
+                            <th>Categoria</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="curso : ${cursos}">
+                            <td th:text="${curso.idCurso}">1</td>
+                            <td th:text="${curso.nombreCurso}">Matemáticas</td>
+                            <td th:text="${curso.estado}">Activo</td>
+                            <td th:text="${curso.categoria}">Ciencias</td>
+                            <td>
+                                <a th:href="@{/curso/modificar/{idCurso}(idCurso=${curso.idCurso})}" class="btn btn-warning btn-sm">Modificar</a>
+                                <a th:href="@{/curso/eliminar/{idCurso}(idCurso=${curso.idCurso})}" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="layout/plantilla :: footer"></footer>
+</body>
+</html>

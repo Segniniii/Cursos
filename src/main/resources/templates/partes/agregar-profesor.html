@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/plantilla :: head">
+    <title>Agregar Profesor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header th:replace="layout/plantilla :: header"></header>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h3 th:text="${#strings.capitalize(#httpServletRequest.getRequestURI().contains('modificar') ? 'Modificar Profesor' : 'Agregar Profesor')}">Agregar Profesor</h3>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/profesor/guardar}" th:object="${profesor}" method="post">
+                            <div class="mb-3">
+                                <label for="nombreProfesor" class="form-label">Nombre</label>
+                                <input type="text" id="nombreProfesor" th:field="*{nombreProfesor}" class="form-control" placeholder="Nombre" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="apellidoProfesor" class="form-label">Apellido</label>
+                                <input type="text" id="apellidoProfesor" th:field="*{apellidoProfesor}" class="form-control" placeholder="Apellido" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="emailProfesor" class="form-label">Email</label>
+                                <input type="email" id="emailProfesor" th:field="*{emailProfesor}" class="form-control" placeholder="Email" required>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <a href="#" th:href="@{/profesor/verprofesores}" class="btn btn-secondary">Cancelar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="layout/plantilla :: footer"></footer>
+</body>
+</html>

@@ -11,13 +11,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.io.Serializable;
-import lombok.Data;
 
 /**
  *
  * @author memeq
  */
-@Data //atomaticamente los setters and getter
+
 @Entity
 @Table(name="grupo")
 public class Grupo implements Serializable{
@@ -37,6 +36,22 @@ public class Grupo implements Serializable{
 
     public Grupo( int espacio) {
         
+        this.espacio = espacio;
+    }
+
+    public Long getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(Long idGrupo) {
+        this.idGrupo = idGrupo;
+    }
+
+    public int getEspacio() {
+        return espacio;
+    }
+
+    public void setEspacio(int espacio) {
         this.espacio = espacio;
     }
 

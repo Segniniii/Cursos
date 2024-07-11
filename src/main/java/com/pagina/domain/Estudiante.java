@@ -10,13 +10,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.io.Serializable;
-import lombok.Data;
 
 /**
  *
  * @author memeq
  */
-@Data //atomaticamente los setters and getter
+
 @Entity
 @Table(name="estudiante")
 public class Estudiante implements Serializable{
@@ -29,15 +28,39 @@ public class Estudiante implements Serializable{
     @Column(name = "id_estudiante")
     private Long idEstudiante;
     private Long idGrupo;
-    private String nombeEstudiante;
+    private String nombreEstudiante;
     
 
     public Estudiante() {
     }
 
-    public Estudiante(Long idGrupo, String nombeEstudiante) {
+    public Estudiante(Long idGrupo, String nombreEstudiante) {
         this.idGrupo = idGrupo;
-        this.nombeEstudiante = nombeEstudiante;
+        this.nombreEstudiante = nombreEstudiante;
+    }
+
+    public Long getIdEstudiante() {
+        return idEstudiante;
+    }
+
+    public void setIdEstudiante(Long idEstudiante) {
+        this.idEstudiante = idEstudiante;
+    }
+
+    public Long getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(Long idGrupo) {
+        this.idGrupo = idGrupo;
+    }
+
+    public String getNombreEstudiante() {
+        return nombreEstudiante;
+    }
+
+    public void setNombreEstudiante(String nombreEstudiante) {
+        this.nombreEstudiante = nombreEstudiante;
     }
 
     

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -33,18 +34,22 @@ public class GrupoController {
         return "/partes/agregar";
     }
 
-   
+   @PostMapping("/guardar")
+    public String guardarGrupo(Grupo grupo) {
+        grupoService.save(grupo);
+        return "redirect:/grupo/vergrupos";
+    }
 
     @GetMapping("/eliminar/{idGrupo}")
     public String grupoEliminar(Grupo grupo) {
         grupoService.delete(grupo);
-        return "redirect:/partes/listado";
+        return "redirect:/grupo/vergrupos";
     }
 
     @GetMapping("/modificar/{idGrupo}")
     public String grupoModificar(Grupo grupo, Model model) {
         grupo = grupoService.getGrupo(grupo);
         model.addAttribute("grupo", grupo);
-        return "/partes/modifica";
+        return "/partes/modifica-grupo";
     }
 }

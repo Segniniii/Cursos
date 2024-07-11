@@ -18,15 +18,15 @@ public class EstudianteController {
 
     @Autowired
     private EstudianteService estudianteService;
-
-    @GetMapping("/verestudiantes")
+    
+    @GetMapping("/verEstudiantes")
     public String inicio(Model model) {
         List<Estudiante> estudiantes = estudianteService.getEstudiantes();
         model.addAttribute("estudiantes", estudiantes);
         model.addAttribute("totalEstudiantes", estudiantes.size());
-        return "/partes/verestudiante";
+        return "/partes/listaEstudiantes";
     }
-
+  
     @GetMapping("/agregar")
     public String estudianteNuevo(Estudiante estudiante) {
         return "/partes/agregar";
@@ -37,7 +37,7 @@ public class EstudianteController {
     @GetMapping("/eliminar/{idEstudiante}")
     public String estudianteEliminar(Estudiante estudiante) {
         estudianteService.delete(estudiante);
-        return "redirect:/partes/listado";
+        return "redirect:/estudiante/verEstudiantes";
     }
 
     @GetMapping("/modificar/{idEstudiante}")
