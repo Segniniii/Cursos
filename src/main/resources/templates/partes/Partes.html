@@ -21,12 +21,13 @@
 
                                                 <a th:href="@{/estudiante/verEstudiantes}" class="btn btn-primary mr-2">Ver estudiantes</a>
                                                 <a th:href="@{/grupo/eliminar/{idGrupo}(idGrupo=${grupo.idGrupo})}" class="btn btn-danger mr-2">Eliminar</a>
-                                                <a th:href="@{/grupo/modificar/{idGrupo}(idGrupo=${grupo.idGrupo})}" class="btn btn-success mr-2">Modificar</a>
+                                                <a th:href="@{/grupo/modificar/{idGrupo}(idGrupo=${grupo.idGrupo})}" class="btn btn-warning mr-2">Modificar</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <a th:href="@{/grupo/agregar}" class="btn btn-success mr-2">Agregar</a>
                         </div>
 
                     </section>
@@ -34,7 +35,7 @@
                     <!--  Modificar grupos -->
                     <section th:fragment="Modificar-Grupo">
                         <div class="row justify-content-center">
-                            <div class="col-md-4">
+                            <div class="col-md-8">
                                 <div class="card mt-5">
                                     <div class="card-header">
                                         <h3>Modificar grupo</h3>
@@ -48,22 +49,54 @@
 
                                             <div class="mb-3">
                                                 <label for="espacio" class="form-label">Espacio</label>
-                                                <input type="number" id="espacio" th:field="*{espacio}" class="form-control" placeholder="Espacio" required>
+                                                <input type="number" id="espacio" th:field="*{espacio}" class="form-control" placeholder="Espacio del Grupo" required>
                                             </div>
-
-                                            <div class="d-grid gap-2">
-                                                <button type="submit" class="btn btn-primary">Guardar</button>
-                                                <a href="#" th:href="@{/grupo/vergrupos}" class="btn btn-secondary">Cancelar</a>
-                                            </div>
-                                        </form>
-
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <a href="#" th:href="@{/grupo/vergrupos}" class="btn btn-secondary">Cancelar</a>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Agregar grupo -->
+                    <section th:fragment="agregarGrupo">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-8">
+                                    <div class="card mt-5">
+                                        <div class="card-header">
+                                            <h3 >Agregar Grupo</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <form th:action="@{/grupo/guardar}" th:object="${grupo}" method="post">
+                                                <div class="modal-body">
+                                                    <div class="mb-3">
+                                                        <label for="idGrupo" class="form-label">ID del Grupo es Automatica</label>
+                                                        <input type="hidden" id="idGrupo" th:field="*{idGrupo}" class="form-control" placeholder="ID del Grupo">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="espacio" class="form-label">Espacio</label>
+                                                        <input type="number" id="espacio" th:field="*{espacio}" class="form-control" placeholder="Espacio del Grupo" required>
+                                                    </div>
+                                                </div>
+                                                <div class="d-grid gap-2">
+                                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                                    <a href="#" th:href="@{/profesor/verprofesores}" class="btn btn-secondary">Cancelar</a>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
-                    <!-- Crear grupos -->
-
+                    
                     <!-- Listado de Estudiantes -->
                     <section th:fragment="listadoEstudiantespor_grupo" id="listadoEstudiantespor_grupo">
                         <div class="container">
@@ -121,5 +154,6 @@
                             </div>
                         </div>
                     </section>
+                    
                 </body>
                 </html>

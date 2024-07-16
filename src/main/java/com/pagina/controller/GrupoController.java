@@ -31,7 +31,7 @@ public class GrupoController {
 
     @GetMapping("/agregar")
     public String grupoNuevo(Grupo grupo) {
-        return "/partes/agregar";
+        return "/partes/agregar-grupo";
     }
 
    @PostMapping("/guardar")
