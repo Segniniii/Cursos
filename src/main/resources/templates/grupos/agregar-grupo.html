@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="layout/plantilla :: head">
-        <title>grupo</title>
+        <title>Grupo</title>
         <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 </head>
                 <body>
                     <header th:replace="layout/plantilla :: header"></header>
-                    <section th:replace="partes/Partes :: listadoEstudiantespor_grupo" ></section>
 
-                    <header th:replace="layout/plantilla :: footer"></header>
+                    <section th:replace="grupos/Partes :: agregarGrupo" ></section>
+
+                    <footer th:replace="layout/plantilla :: footer"></footer>
                 </body>
                 </html>
-

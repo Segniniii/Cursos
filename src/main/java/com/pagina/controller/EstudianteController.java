@@ -24,7 +24,7 @@ public class EstudianteController {
         List<Estudiante> estudiantes = estudianteService.getEstudiantes();
         model.addAttribute("estudiantes", estudiantes);
         model.addAttribute("totalEstudiantes", estudiantes.size());
-        return "/partes/listaEstudiantes";
+        return "/grupos/listaEstudiantes";
     }
   
     @GetMapping("/agregar")

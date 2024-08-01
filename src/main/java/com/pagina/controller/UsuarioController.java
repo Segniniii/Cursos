@@ -31,11 +31,11 @@ public class UsuarioController {
     public String registerUser(@ModelAttribute("usuario") Usuario usuario) {
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         usuarioService.save(usuario);
-        return "redirect:/partes/Login";
+        return "redirect:/Login";
     }
 
     @GetMapping("/login")
     public String showLoginForm() {
-        return "/partes/Login";
+        return "/Login";
     }
 }

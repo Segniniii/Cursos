@@ -26,12 +26,12 @@ public class GrupoController {
         List<Grupo> grupos = grupoService.getGrupos();
         model.addAttribute("grupos", grupos);
         model.addAttribute("totalGrupos", grupos.size());
-        return "/partes/Grupos";
+        return "/grupos/Grupos";
     }
 
     @GetMapping("/agregar")
     public String grupoNuevo(Grupo grupo) {
-        return "/partes/agregar-grupo";
+        return "/grupos/agregar-grupo";
     }
 
    @PostMapping("/guardar")
@@ -50,6 +50,6 @@ public class GrupoController {
     public String grupoModificar(Grupo grupo, Model model) {
         grupo = grupoService.getGrupo(grupo);
         model.addAttribute("grupo", grupo);
-        return "/partes/modifica-grupo";
+        return "/grupos/modifica-grupo";
     }
 }

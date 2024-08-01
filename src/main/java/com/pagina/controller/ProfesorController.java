@@ -20,12 +20,12 @@ public class ProfesorController {
         List<Profesor> profesores = profesorService.getProfesores();
         model.addAttribute("profesores", profesores);
         model.addAttribute("totalProfesores", profesores.size());
-        return "/partes/lista-profesores";
+        return "/profesores/lista-profesores";
     }
 
     @GetMapping("/agregar")
     public String agregarProfesor(Profesor profesor) {
-        return "/partes/agregar-profesor";
+        return "/profesores/agregar-profesor";
     }
 
     @PostMapping("/guardar")
@@ -49,6 +49,6 @@ public class ProfesorController {
         profesor = profesorService.getProfesor(profesor);
         model.addAttribute("profesor", profesor);
         model.addAttribute("esModificacion", true); // Indicador de modo modificación
-        return "/partes/modifica-profesor";
+        return "/profesores/modifica-profesor";
     }
 }

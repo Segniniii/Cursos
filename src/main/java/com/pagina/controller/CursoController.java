@@ -17,13 +17,13 @@ public class CursoController {
     @GetMapping("/vercursos")
     public String verCursos(Model model) {
         model.addAttribute("cursos", cursoService.getCursos());
-        return "/partes/lista-cursos";
+        return "/cursos/lista-cursos";
     }
 
     @GetMapping("/agregar")
     public String agregarCurso(Model model) {
         model.addAttribute("curso", new Curso());
-        return "/partes/agregar-curso";
+        return "/cursos/agregar-curso";
     }
 
     @GetMapping("/modificar/{idCurso}")
@@ -31,7 +31,7 @@ public class CursoController {
         Curso curso = cursoService.getCurso(idCurso);
         model.addAttribute("curso", curso);
         model.addAttribute("esModificacion", true);
-        return "/partes/modifica-curso";
+        return "/cursos/modifica-curso";
     }
 
     @PostMapping("/guardar")
