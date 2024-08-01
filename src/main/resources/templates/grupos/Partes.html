@@ -63,7 +63,7 @@
                         </div>
                         </div>
                     </section>
-                    
+
                     <!-- Agregar grupo -->
                     <section th:fragment="agregarGrupo">
                         <div class="container">
@@ -79,6 +79,7 @@
                                                     <div class="mb-3">
                                                         <label for="idGrupo" class="form-label">ID del Grupo es Automatica</label>
                                                         <input type="hidden" id="idGrupo" th:field="*{idGrupo}" class="form-control" placeholder="ID del Grupo">
+
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="espacio" class="form-label">Espacio</label>
@@ -96,7 +97,7 @@
                             </div>
                         </div>
                     </section>
-                    
+
                     <!-- Listado de Estudiantes -->
                     <section th:fragment="listadoEstudiantespor_grupo" id="listadoEstudiantespor_grupo">
                         <div class="container">
@@ -123,18 +124,22 @@
                                                         <th>Nombre</th>
                                                         <th>Grupo</th>
                                                         <th>Opciones</th>
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr th:each="estudiante, contador : ${estudiantes}">
                                                         <td th:text="${contador.count}">1</td>
                                                         <td th:text="${estudiante.getNombreEstudiante()}">Nombre Estudiante</td>
-                                                        <td th:text="${estudiante.getIdGrupo()}">grupo del estudiante</td>
+                                                        <td>
+                                                            <span th:if="${estudiante.grupo != null}" th:text="${estudiante.grupo.idGrupo}">Grupo del estudiante</span>
+                                                            <span th:if="${estudiante.grupo == null}">Sin grupo asignado</span>
+                                                        </td>
 
                                                         <td>
-                                                        <!--     <a th:href="@{/modificar/{idEstudiante}}"
+                                                            <a th:href="@{/estudiante/modificar/{idEstudiante}(idEstudiante=${estudiante.idEstudiante})}"
                                                                class="btn btn-primary">
-                                                                Actualizar</a>-->
+                                                                Actualizar</a>
 
                                                             <a th:href="@{/estudiante/eliminar/{idEstudiante}(idEstudiante=${estudiante.idEstudiante})}"
                                                                class="btn btn-danger">
@@ -154,6 +159,6 @@
                             </div>
                         </div>
                     </section>
-                    
+
                 </body>
                 </html>

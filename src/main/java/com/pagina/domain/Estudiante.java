@@ -1,42 +1,39 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.pagina.domain;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import jakarta.persistence.*;
 import java.io.Serializable;
 
-/**
- *
- * @author memeq
- */
-
 @Entity
-@Table(name="estudiante")
-public class Estudiante implements Serializable{
- 
+@Table(name = "estudiante")
+public class Estudiante implements Serializable {
 
     private static final long serialVersionUID = 1l;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_estudiante")
     private Long idEstudiante;
-    private Long idGrupo;
-    private String nombreEstudiante;
     
+    private String nombreEstudiante;
+
+    @ManyToOne
+    @JoinColumn(name = "id_grupo")
+    Grupo grupo;
 
     public Estudiante() {
     }
 
-    public Estudiante(Long idGrupo, String nombreEstudiante) {
-        this.idGrupo = idGrupo;
+    public Estudiante(String nombreEstudiante) {
+
         this.nombreEstudiante = nombreEstudiante;
+    }
+
+    public Grupo getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
     }
 
     public Long getIdEstudiante() {
@@ -47,13 +44,7 @@ public class Estudiante implements Serializable{
         this.idEstudiante = idEstudiante;
     }
 
-    public Long getIdGrupo() {
-        return idGrupo;
-    }
-
-    public void setIdGrupo(Long idGrupo) {
-        this.idGrupo = idGrupo;
-    }
+    
 
     public String getNombreEstudiante() {
         return nombreEstudiante;
@@ -63,9 +54,4 @@ public class Estudiante implements Serializable{
         this.nombreEstudiante = nombreEstudiante;
     }
 
-    
-
-    
-    
-    
 }

@@ -18,21 +18,25 @@ public class EstudianteController {
 
     @Autowired
     private EstudianteService estudianteService;
-    
+
     @GetMapping("/verEstudiantes")
     public String inicio(Model model) {
         List<Estudiante> estudiantes = estudianteService.getEstudiantes();
         model.addAttribute("estudiantes", estudiantes);
         model.addAttribute("totalEstudiantes", estudiantes.size());
-        return "/grupos/listaEstudiantes";
-    }
-  
-    @GetMapping("/agregar")
-    public String estudianteNuevo(Estudiante estudiante) {
-        return "/partes/agregar";
+        return "/estudiantes/listaEstudiantes";
     }
 
-   
+    @GetMapping("/agregar")
+    public String estudianteNuevo(Estudiante estudiante) {
+        return "/estudiantes/agregar";
+    }
+
+    @PostMapping("/guardar")
+    public String guardarEstudiante(Estudiante estudiante) {
+        estudianteService.save(estudiante);
+        return "redirect:/estudiante/verEstudiantes";
+    }
 
     @GetMapping("/eliminar/{idEstudiante}")
     public String estudianteEliminar(Estudiante estudiante) {
@@ -44,6 +48,6 @@ public class EstudianteController {
     public String estudianteModificar(Estudiante estudiante, Model model) {
         estudiante = estudianteService.getEstudiante(estudiante);
         model.addAttribute("estudiante", estudiante);
-        return "/partes/modifica";
+        return "/estudiantes/modifica-estudiante";
     }
 }

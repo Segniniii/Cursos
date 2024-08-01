@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/plantilla :: head">
+        <title>grupo</title>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                </head>
+                <body>
+                    <header th:replace="layout/plantilla :: header"></header>
+
+
+                    <section th:fragment="Modificar-Estudiante">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="card mt-5">
+                                    <div class="card-header">
+                                        <h3>Modificar Estudiante</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <h4 class="card-title">Estudiante: <span th:text="${estudiante.idEstudiante}">ID</span></h4>
+                                        </div>
+                                        <form th:action="@{/estudiante/guardar}" th:object="${estudiante}" method="post">
+                                            <div class="mb-3">
+                                                <div class="mb-3">
+                                                    <label for="idEstudiante" class="form-label"></label>
+                                                    <input type="hidden" id="idEstudiante" th:field="*{idEstudiante}" class="form-control" placeholder="ID del Estudiante">
+
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="idGrupo" class="form-label">Grupo al que pertenece</label>
+                                                    <input type="text" id="idGrupo" name="grupo.idGrupo" class="form-control" 
+                                                           th:field="*{grupo.idGrupo}" placeholder="Ingrese el ID del grupo" >
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="nombreEstudiante" class="form-label">Nombre completo</label>
+                                                    <input type="text" id="nombreEstudiante" th:field="*{nombreEstudiante}" class="form-control" placeholder="Nombre completo" required>
+                                                </div>
+
+                                                <div class="d-grid gap-2">
+                                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                                    <a href="#" th:href="@{/estudiante/verEstudiantes}" class="btn btn-secondary">Cancelar</a>
+                                                </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+
+
+                    <header th:replace="layout/plantilla :: footer"></header>
+                </body>
+                </html>

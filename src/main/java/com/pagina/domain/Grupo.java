@@ -1,21 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.pagina.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import java.io.Serializable;
+import jakarta.persistence.*;
 
-/**
- *
- * @author memeq
- */
+import java.io.Serializable;
+import java.util.List;
+
 
 @Entity
 @Table(name="grupo")
@@ -30,8 +20,19 @@ public class Grupo implements Serializable{
     private Long idGrupo;
     private int espacio;
     
+    @OneToMany
+    @JoinColumn(name="id_grupo", insertable= false,updatable=false)
+    List<Estudiante> estudiantes;
 
     public Grupo() {
+    }
+
+    public List<Estudiante> getEstudiantes() {
+        return estudiantes;
+    }
+
+    public void setEstudiantes(List<Estudiante> estudiantes) {
+        this.estudiantes = estudiantes;
     }
 
     public Grupo( int espacio) {
