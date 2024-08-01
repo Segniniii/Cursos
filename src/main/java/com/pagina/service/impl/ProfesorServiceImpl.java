@@ -37,4 +37,10 @@ public class ProfesorServiceImpl implements ProfesorService {
     public void delete(Profesor profesor) {
         profesorDao.delete(profesor);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Profesor> getProfesoresPendientes() {
+        return profesorDao.findByEstadoPostulacion("Pendiente");
+    }
 }

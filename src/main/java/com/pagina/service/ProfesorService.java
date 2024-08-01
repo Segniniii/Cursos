@@ -8,4 +8,5 @@ public interface ProfesorService {
     Profesor getProfesor(Profesor profesor);
     void save(Profesor profesor);
     void delete(Profesor profesor);
+    List<Profesor> getProfesoresPendientes();
 }

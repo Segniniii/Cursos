@@ -12,6 +12,7 @@ public class Profesor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_profesor")
     private Long idProfesor;
+    
 
     @Column(name = "nombre_profesor", nullable = false)
     private String nombreProfesor;
@@ -21,8 +22,11 @@ public class Profesor implements Serializable {
 
     @Column(name = "email_profesor", nullable = false)
     private String emailProfesor;
+    
+    @Column(name = "estado_postulacion", nullable = false)
+    private String estadoPostulacion;
 
-    // Getters and setters
+    // Getters y Setters
     public Long getIdProfesor() {
         return idProfesor;
     }
@@ -53,5 +57,13 @@ public class Profesor implements Serializable {
 
     public void setEmailProfesor(String emailProfesor) {
         this.emailProfesor = emailProfesor;
+    }
+
+    public String getEstadoPostulacion() {
+        return estadoPostulacion;
+    }
+
+    public void setEstadoPostulacion(String estadoPostulacion) {
+        this.estadoPostulacion = estadoPostulacion;
     }
 }

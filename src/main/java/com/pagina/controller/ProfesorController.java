@@ -30,6 +30,7 @@ public class ProfesorController {
 
     @PostMapping("/guardar")
     public String guardarProfesor(Profesor profesor) {
+        profesor.setEstadoPostulacion("Pendiente"); // Set estado to Pendiente when a new professor is added
         profesorService.save(profesor);
         return "redirect:/profesor/verprofesores";
     }
@@ -50,5 +51,36 @@ public class ProfesorController {
         model.addAttribute("profesor", profesor);
         model.addAttribute("esModificacion", true); // Indicador de modo modificación
         return "/profesores/modifica-profesor";
+    }
+
+    @GetMapping("/postulaciones")
+    public String verPostulaciones(Model model) {
+        List<Profesor> postulaciones = profesorService.getProfesoresPendientes();
+        model.addAttribute("postulaciones", postulaciones);
+        return "/profesores/lista-postulaciones";
+    }
+
+    @PostMapping("/aprobar/{idProfesor}")
+    public String aprobarPostulacion(@PathVariable("idProfesor") Long idProfesor) {
+        Profesor profesor = new Profesor();
+        profesor.setIdProfesor(idProfesor);
+        profesor = profesorService.getProfesor(profesor);
+        if (profesor != null) {
+            profesor.setEstadoPostulacion("Aprobado");
+            profesorService.save(profesor);
+        }
+        return "redirect:/profesor/postulaciones";
+    }
+
+    @PostMapping("/rechazar/{idProfesor}")
+    public String rechazarPostulacion(@PathVariable("idProfesor") Long idProfesor) {
+        Profesor profesor = new Profesor();
+        profesor.setIdProfesor(idProfesor);
+        profesor = profesorService.getProfesor(profesor);
+        if (profesor != null) {
+            profesor.setEstadoPostulacion("Rechazado");
+            profesorService.save(profesor);
+        }
+        return "redirect:/profesor/postulaciones";
     }
 }

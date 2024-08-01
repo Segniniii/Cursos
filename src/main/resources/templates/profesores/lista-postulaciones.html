@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Postulaciones de Profesores</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+    <header th:fragment="header" class="header-primary bg-primary p-0">
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link text-white" th:href="@{/}">Cursos Online.com</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" th:href="@{/grupo/vergrupos}">Grupos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" th:href="@{/profesor/verprofesores}">Profesores</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" th:href="@{/curso/vercursos}">Cursos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" th:href="@{/profesor/postulaciones}">Postulaciones</a> <!-- Nuevo botón -->
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" th:href="@{/inicio/login}">Login</a>
+            </li>
+        </ul>
+    </header>
+
+    <main class="container mt-3">
+        <h1>Postulaciones de Profesores</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="profesor : ${postulaciones}">
+                    <td th:text="${profesor.nombreProfesor}">Nombre</td>
+                    <td th:text="${profesor.apellidoProfesor}">Apellido</td>
+                    <td th:text="${profesor.emailProfesor}">Email</td>
+                    <td>
+                        <form th:action="@{/profesor/aprobar/{idProfesor}(idProfesor=${profesor.idProfesor})}" method="post">
+                            <button type="submit" class="btn btn-success">Aprobar</button>
+                        </form>
+                        <form th:action="@{/profesor/rechazar/{idProfesor}(idProfesor=${profesor.idProfesor})}" method="post">
+                            <button type="submit" class="btn btn-danger">Rechazar</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <footer th:fragment="footer" class="footer">
+        <div class="card">
+            <div class="card-header bg-primary">
+                <span class="text-white">DERECHOS RESERVADOS</span>
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <footer class="blockquote-footer">
+                        <p>
+                            Matias Segnini,
+                            Sebastian Murillo,
+                            Gabriel Arroyo.
+                        </p>
+                    </footer>
+                </blockquote>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
