@@ -1,4 +1,3 @@
-
 package com.pagina.controller;
 
 import com.pagina.domain.Grupo;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @Controller
 @Slf4j
@@ -29,12 +27,19 @@ public class GrupoController {
         return "/grupos/Grupos";
     }
 
+    @GetMapping("/estudiantesGrupo/{idGrupo}")
+    public String estudiantesGrupo(Model model,Grupo grupo) {
+        var estudiantes = grupoService.getGrupo(grupo).getEstudiantes();
+        model.addAttribute("estudiantes",estudiantes);
+        return "/grupos/lista-estudiantes_grupo";
+    }
+
     @GetMapping("/agregar")
     public String grupoNuevo(Grupo grupo) {
         return "/grupos/agregar-grupo";
     }
 
-   @PostMapping("/guardar")
+    @PostMapping("/guardar")
     public String guardarGrupo(Grupo grupo) {
         grupoService.save(grupo);
         return "redirect:/grupo/vergrupos";

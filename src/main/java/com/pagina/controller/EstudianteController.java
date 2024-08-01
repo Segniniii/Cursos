@@ -29,7 +29,7 @@ public class EstudianteController {
 
     @GetMapping("/agregar")
     public String estudianteNuevo(Estudiante estudiante) {
-        return "/estudiantes/agregar";
+        return "/estudiantes/agregar-estudiante";
     }
 
     @PostMapping("/guardar")

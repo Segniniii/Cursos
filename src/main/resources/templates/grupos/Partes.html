@@ -19,7 +19,7 @@
 
                                                 <p class="card-text">Espacio: <span th:text="${grupo.getEspacio()}">Descripción del espacio</span></p>
 
-                                                <a th:href="@{/estudiante/verEstudiantes}" class="btn btn-primary mr-2">Ver estudiantes</a>
+                                                <a th:href="@{/grupo/estudiantesGrupo/{idGrupo}(idGrupo=${grupo.idGrupo})}" class="btn btn-primary mr-2">Estudiantes del grupo</a>
                                                 <a th:href="@{/grupo/eliminar/{idGrupo}(idGrupo=${grupo.idGrupo})}" class="btn btn-danger mr-2">Eliminar</a>
                                                 <a th:href="@{/grupo/modificar/{idGrupo}(idGrupo=${grupo.idGrupo})}" class="btn btn-warning mr-2">Modificar</a>
                                             </div>
@@ -99,7 +99,7 @@
                     </section>
 
                     <!-- Listado de Estudiantes -->
-                    <section th:fragment="listadoEstudiantespor_grupo" id="listadoEstudiantespor_grupo">
+                    <section th:fragment="listadoEstudiantes" id="listadoEstudiantes">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-3">
