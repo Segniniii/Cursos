@@ -47,7 +47,7 @@ public class ProjectConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
-
+//
     // Bean para poder acceder a los Messages.properties en código Java...
     @Bean("messageSource")
     public MessageSource messageSource() {
