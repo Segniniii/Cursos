@@ -66,6 +66,11 @@
                                             <span>No hay estudiantes.</span>
                                         </div>
                                     </div>
+                                    <div class="container">
+                                        <div class="col-md-3 ">
+                                            <a th:href="@{/estudiante/agregar}" class="btn btn-success">Agregar</a>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -73,12 +78,12 @@
                         </div>
 
                     </section>
-                    <div class="row">
-                        <div class="col-12 text-right">
-                            <a th:href="@{/estudiante/agregar}" class="btn btn-success">Agregar</a>
+                    <div class="container">
+                        <div class="col-12 ">
+                            <a th:href="@{/asistencia/verAsistencias}" class="btn btn-warning">Ver lista de asistencia</a>
                         </div>
                     </div>
-                   
+
                     <header th:replace="layout/plantilla :: footer"></header>
                 </body>
                 </html>

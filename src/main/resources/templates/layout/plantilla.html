@@ -1,56 +1,57 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head">
-    <title>vista principal</title>
-    <meta charset="UTF-8">
-    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-</head>
-<body>
-    <header th:fragment="header" class="header-primary bg-primary p-0">
-        <ul class="nav justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link text-white" th:href="@{/}">Cursos Online.com</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" th:href="@{/grupo/vergrupos}">Grupos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" th:href="@{/profesor/verprofesores}">Profesores</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" th:href="@{/profesor/postulaciones}">Postulaciones</a> <!-- Nuevo botón -->
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" th:href="@{/curso/vercursos}">Cursos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" th:href="@{/estudiante/verEstudiantes}">Estudiantes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" th:href="@{/inicio/login}">login</a>
-            </li>
-        </ul>
-    </header>
-    
-    <footer th:fragment="footer" class="footer">
-        <div class="card">
-            <div class="card-header bg-primary">
-                <span class="text-white">DERECHOS RESERVADOS</span>
+    <head th:fragment="head">
+        <title>vista principal</title>
+        <meta charset="UTF-8">
+            <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+            <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+            <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+            <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+            <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </head>
+    <body>
+        <header th:fragment="header" class="header-primary bg-primary p-0">
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link text-white" th:href="@{/}">Cursos Online.com</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" th:href="@{/grupo/vergrupos}">Grupos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" th:href="@{/profesor/verprofesores}">Profesores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" th:href="@{/profesor/postulaciones}">Postulaciones</a> <!-- Nuevo botón -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" th:href="@{/curso/vercursos}">Cursos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" th:href="@{/estudiante/verEstudiantes}">Estudiantes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" th:href="@{/inicio/login}">login</a>
+                </li>
+                
+            </ul>
+        </header>
+
+        <footer th:fragment="footer" class="footer">
+            <div class="card">
+                <div class="card-header bg-primary">
+                    <span class="text-white">DERECHOS RESERVADOS</span>
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <footer class="blockquote-footer"><p>
+                                Matias Segnini,
+                                Sebastian Murillo,
+                                Gabriel Arroyo.</p>
+                        </footer>
+                    </blockquote>
+                </div>
             </div>
-            <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                    <footer class="blockquote-footer"><p>
-                        Matias Segnini,
-                        Sebastian Murillo,
-                        Gabriel Arroyo.</p>
-                    </footer>
-                </blockquote>
-            </div>
-        </div>
-    </footer>
-</body>
+        </footer>
+    </body>
 </html>
