@@ -26,7 +26,7 @@
                                                     <tr th:each="estudiante, contador : ${estudiantes}">
                                                         <td class="text-center">[[${contador.count}]]</td>
 
-                                                        <td th:text="${estudiante.getNombreEstudiante()}" class="text-center">Nombre Estudiante</td>
+                                                        <td th:text="${estudiante.getNombreEstudiante()}">Nombre Estudiante</td>
 
                                                     </tr>
                                                 </tbody>
