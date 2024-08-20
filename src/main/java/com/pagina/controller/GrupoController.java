@@ -1,6 +1,8 @@
 package com.pagina.controller;
 
+
 import com.pagina.domain.Grupo;
+
 import com.pagina.service.GrupoService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +20,7 @@ public class GrupoController {
 
     @Autowired
     private GrupoService grupoService;
+    
 
     @GetMapping("/vergrupos")
     public String inicio(Model model) {
@@ -28,9 +31,9 @@ public class GrupoController {
     }
 
     @GetMapping("/estudiantesGrupo/{idGrupo}")
-    public String estudiantesGrupo(Model model,Grupo grupo) {
+    public String estudiantesGrupo(Model model, Grupo grupo) {
         var estudiantes = grupoService.getGrupo(grupo).getEstudiantes();
-        model.addAttribute("estudiantes",estudiantes);
+        model.addAttribute("estudiantes", estudiantes);
         return "/grupos/lista-estudiantes_grupo";
     }
 
