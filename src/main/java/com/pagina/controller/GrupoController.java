@@ -56,6 +56,8 @@ public class GrupoController {
 
     @GetMapping("/modificar/{idGrupo}")
     public String grupoModificar(Grupo grupo, Model model) {
+        var estudiantes = grupoService.getGrupo(grupo).getEstudiantes();
+        model.addAttribute("estudiantes", estudiantes);
         grupo = grupoService.getGrupo(grupo);
         model.addAttribute("grupo", grupo);
         return "/grupos/modifica-grupo";

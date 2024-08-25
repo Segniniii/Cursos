@@ -35,7 +35,7 @@
                     <!--  Modificar grupos -->
                     <section th:fragment="Modificar-Grupo">
                         <div class="row justify-content-center">
-                            <div class="col-md-8">
+                            <div class="col-md-8" >
                                 <div class="card mt-5">
                                     <div class="card-header">
                                         <h3>Modificar grupo</h3>
@@ -51,10 +51,50 @@
                                                 <label for="espacio" class="form-label">Espacio</label>
                                                 <input type="number" id="espacio" th:field="*{espacio}" class="form-control" placeholder="Espacio del Grupo" required>
                                             </div>
-                                            
-                                            
+
+
                                     </div>
-                                    
+                                    <div class="container" >
+                                        <div class="row" >
+                                            <div class="col-md-9">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h4>Estudiantes del grupo</h4></div>
+                                                    <div th:if="${estudiantes != null and !estudiantes.empty}">
+                                                        <table class="table table-striped table-hover">
+                                                            <thead class="table-primary">
+                                                                <tr>
+
+                                                                    <th class="text-center">Nombre</th>  
+                                                                    <th class="text-center"> Opciones</th>
+                                                                    
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr th:each="estudiante, contador : ${estudiantes}">
+
+
+                                                                    <td th:text="${estudiante.getNombreEstudiante()}" class="text-center">Nombre Estudiante</td>
+                                                                    <td class="text-center">
+                                                                        
+                                                                        
+                                                                        
+                                                                        <a th:href="@{/estudiante/modificar/{idEstudiante}(idEstudiante=${estudiante.idEstudiante})}"
+                                                                           class="btn btn-primary">
+                                                                            Actualizar</a>
+
+                                                                        
+
+                                                                    </td>
+
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="d-grid gap-2">
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                         <a href="#" th:href="@{/grupo/vergrupos}" class="btn btn-secondary">Cancelar</a>

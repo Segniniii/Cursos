@@ -38,6 +38,8 @@ public class EstudianteController {
         return "redirect:/estudiante/verEstudiantes";
     }
 
+
+
     @GetMapping("/eliminar/{idEstudiante}")
     public String estudianteEliminar(Estudiante estudiante) {
         estudianteService.delete(estudiante);
@@ -50,4 +52,5 @@ public class EstudianteController {
         model.addAttribute("estudiante", estudiante);
         return "/estudiantes/modifica-estudiante";
     }
+
 }
