@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.io.Serializable;
@@ -19,32 +20,43 @@ import java.util.Date;
  *
  * @author Usuario
  */
-
 @Entity
 @Table(name = "tarea")
-public class Tarea implements Serializable{
+public class Tarea implements Serializable {
+
     private static final long serialVersionUID = 1l;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_Tarea")
-    
+
     private Long idTarea;
     private Date fechaInicio;
     private Date fechaEntrega;
 
     public Tarea() {
     }
-    
-    @OneToOne
-    @JoinColumn(name = "id_calificacion")
-    Calificacion calificacion;
 
-    public Tarea(Date fechaInicio, Date fechaEntrega, Calificacion calificacion) {
+    @ManyToOne
+    @JoinColumn(name = "id_estudiante")
+    Estudiante estudiante;
+
+    public Tarea(Date fechaInicio, Date fechaEntrega, Estudiante estudiante) {
         this.fechaInicio = fechaInicio;
         this.fechaEntrega = fechaEntrega;
-        this.calificacion = calificacion;
+       
+        this.estudiante = estudiante;
     }
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
+    }
+
+    
 
     public Long getIdTarea() {
         return idTarea;
@@ -70,14 +82,6 @@ public class Tarea implements Serializable{
         this.fechaEntrega = fechaEntrega;
     }
 
-    public Calificacion getCalificacion() {
-        return calificacion;
-    }
+   
 
-    public void setCalificacion(Calificacion calificacion) {
-        this.calificacion = calificacion;
-    }
-    
-    
-    
 }

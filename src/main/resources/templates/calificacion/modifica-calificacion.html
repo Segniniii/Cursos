@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/plantilla :: head">
+        <title>Calificacions</title>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <section th:fragment="Modificar-Calificacion">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card mt-5">
+                        <div class="card-header">
+                            <h3>Modificar Calificación</h3>
+                        </div>
+                        <div class="card-body">
+
+                            <form th:action="@{/calificacion/guardar}" th:object="${calificacion}" method="post">
+
+                                <input type="hidden" id="idCalificacion" th:field="*{idCalificacion}" class="form-control" placeholder="idCalificacion"/>
+                                <input type="hidden" id="idEstudiante" th:field="*{estudiante.idEstudiante}" class="form-control" placeholder="idEstudiante"/>
+                                <input type="hidden" id="idTarea" th:field="*{tarea.idTarea}" class="form-control" placeholder="idTarea"/>
+
+                                <div class="mb-3">
+                                    <label for="calificacionInput" class="form-label">Calificación</label>
+                                    <input type="number" step="0.01" class="form-control" id="calificacionInput" 
+                                           th:value="${calificacion.calificacion}" name="calificacion" 
+                                           min="0" max="100.00" required/>
+                                    <div class="invalid-feedback">
+                                        <span th:errors="*{calificacion}">Por favor, introduzca una calificación entre 0 y 100.00.</span>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="revisadoInput" class="form-label">Revisado</label>
+                                    <select class="form-select" id="revisadoInput" name="revisado">
+                                        <option th:value="true" th:selected="${calificacion.revisado}">Sí</option>
+                                        <option th:value="false" th:selected="${!calificacion.revisado}">No</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                    <a href="#" th:href="@{/calificacion/listado}" class="btn btn-secondary">Cancelar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+</html>

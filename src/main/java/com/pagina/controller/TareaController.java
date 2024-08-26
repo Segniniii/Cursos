@@ -38,7 +38,7 @@ public class TareaController {
 
     @GetMapping("/estudianteTarea/{idTarea}")
     public String estudiantesTarea(Model model, Tarea tarea) {
-        var estudiantes = tareaService.getTarea(tarea).getCalificacion();
+        var estudiantes = tareaService.getTarea(tarea).getEstudiante();
         model.addAttribute("estudiante", estudiantes);
         return "/tareas/lista-tarea-estudiantes";
     }

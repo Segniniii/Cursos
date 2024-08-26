@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 
@@ -39,11 +40,26 @@ public class Calificacion implements Serializable{
     @JoinColumn(name = "id_estudiante")
     Estudiante estudiante;
 
-    public Calificacion(boolean Revisado, float calificacion, Estudiante estudiante) {
+    @OneToOne
+    @JoinColumn(name = "id_Tarea")
+    Tarea tarea;
+
+    public Calificacion(boolean Revisado, float calificacion, Estudiante estudiante, Tarea tarea) {
         this.Revisado = Revisado;
         this.calificacion = calificacion;
         this.estudiante = estudiante;
+        this.tarea = tarea;
     }
+
+    public Tarea getTarea() {
+        return tarea;
+    }
+
+    public void setTarea(Tarea tarea) {
+        this.tarea = tarea;
+    }
+    
+    
 
     public Long getIdCalificacion() {
         return idCalificacion;

@@ -1,44 +1,47 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/plantilla :: head">
-    <title>Cursos</title>
-</head>
-<body>
-    <header th:replace="layout/plantilla :: header"></header>
+    <head th:replace="layout/plantilla :: head">
+        <title>Calificacions</title>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 mt-5">
-                <h2>Cursos</h2>
-                <a href="#" th:href="@{a}" class="btn btn-primary mb-3">Agregar Curso</a>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="calificacion : ${calificacions}">
-                            <td th:text="${calificacion.getIdCalificacion}">1</td>
-                            <td th:text="${calificacion.getEstudiante.getNombre}">1</td>
-                            <td>
-                            <span th:if="${calificacion.getCalificacion != null}" th:text="${calificacion.getCalificacion}">Calificacion</span>
-                            <span th:if="${estudiante.grupo == null}">Sin calificacion asginada</span>
-                            </td>
-                            <td>
-                                <a th:href="@{/calificacion/modificar/{idCurso}(idCurso=${calificacion.idCurso})}" class="btn btn-warning btn-sm">Modificar</a>
-                                <a th:href="@{/calificacion/eliminar/{idCurso}(idCurso=${calificacion.idCurso})}" class="btn btn-danger btn-sm">Eliminar</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mt-5">
+                    <h2>Calificaciones</h2>
+                    <a href="#" th:href="@{a}" class="btn btn-primary mb-3">Agregar Calificacion</a>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Calificacion</th>
+                                <th>ID de la tarea</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="calificacion : ${calificacions}">
+                                <td th:text="${calificacion.getIdCalificacion}">1</td>
+                                <td th:text="${calificacion.getEstudiante.getNombreEstudiante}">1</td>
+                                <td th:text="${calificacion.getCalificacion}">1</td>
+                                <td th:text="${calificacion.getTarea.getIdTarea}">1</td>
+                                <td th:text="${calificacion.isRevisado ? 'Revisado' : 'No Revisado'}"></td>
+                                <td>
+
+                                    <!-- Botón que abre el modal -->
+                                    <a th:href="@{/calificacion/modificar/{idCalificacion}(idCalificacion=${calificacion.idCalificacion})}" class="btn btn-warning btn-sm">Modificar</a>
+                                    <a th:href="@{/calificacion/eliminar/{idCalificacion}(idCalificacion=${calificacion.idCalificacion})}" class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-
-    <footer th:replace="layout/plantilla :: footer"></footer>
-</body>
+                    
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
 </html>
