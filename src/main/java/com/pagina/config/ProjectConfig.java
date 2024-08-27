@@ -62,49 +62,35 @@ public class ProjectConfig implements WebMvcConfigurer {
     }
 
     @Bean
-public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http
-        .authorizeHttpRequests((requests) -> requests
-            // Rutas accesibles por ADMINISTRADOR, PROFESOR, ESTUDIANTE
-            .requestMatchers("/grupo/vergrupos", "/curso/vercursos").hasAnyRole("ADMINISTRADOR", "PROFESOR", "ESTUDIANTE")
-            
-            // Rutas accesibles solo por ADMINISTRADOR
-            .requestMatchers("/profesor/verprofesores", "/profesor/postulaciones", "/usuario/listado").hasRole("ADMINISTRADOR")
-            
-            // Rutas accesibles por ADMINISTRADOR y PROFESOR
-            .requestMatchers("/estudiante/verEstudiantes").hasAnyRole("ADMINISTRADOR", "ESTUDIANTE", "PROFESOR")
-            .requestMatchers("/estudiante/modificar/**").hasAnyRole("ADMINISTRADOR", "PROFESOR")
-            .requestMatchers("/profesor/modificar/**").hasAnyRole("ADMINISTRADOR")
-            .requestMatchers("/profesor/aprobar/**", "/profesor/rechazar/**").hasRole("ADMINISTRADOR")
-            
-            // Rutas accesibles solo por PROFESOR
-            .requestMatchers("/profesor/**").hasRole("PROFESOR")
-            
-            // Rutas accesibles solo por ESTUDIANTE, excepto rutas restringidas
-            .requestMatchers("/estudiante/**").hasRole("ESTUDIANTE")
-            
-            // Rutas específicas accesibles solo por ADMINISTRADOR y PROFESOR, excluyendo ESTUDIANTE
-            .requestMatchers("/grupo/eliminar/2", "/grupo/modificar/2", "/grupo/agregar").hasAnyRole("ADMINISTRADOR", "PROFESOR")
-            
-            // Rutas accesibles por ADMINISTRADOR y PROFESOR, excluyendo a ESTUDIANTE
-            .requestMatchers("/calificacion/modificar/**").hasAnyRole("ADMINISTRADOR", "PROFESOR")
-            
-            // Permitir acceso a cualquier otra ruta sin autenticación
-            .anyRequest().permitAll()
-        )
-        .formLogin((form) -> form
-            .loginPage("/login").permitAll()
-        )
-        .logout((logout) -> logout.permitAll());
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests((requests) -> requests
+                // Rutas accesibles por ADMINISTRADOR, PROFESOR, ESTUDIANTE
+                .requestMatchers("/grupo/vergrupos", "/curso/vercursos").hasAnyRole("ADMINISTRADOR", "PROFESOR", "ESTUDIANTE")
+                // Rutas accesibles solo por ADMINISTRADOR
+                .requestMatchers("/profesor/verprofesores", "/profesor/postulaciones", "/usuario/listado").hasRole("ADMINISTRADOR")
+                .requestMatchers("/curso/a").hasRole("ADMINISTRADOR")
+                // Rutas accesibles por ADMINISTRADOR y PROFESOR
+                .requestMatchers("/estudiante/verEstudiantes").hasAnyRole("ADMINISTRADOR", "ESTUDIANTE", "PROFESOR")
+                .requestMatchers("/estudiante/modificar/**").hasAnyRole("ADMINISTRADOR", "PROFESOR")
+                .requestMatchers("/profesor/modificar/**").hasAnyRole("ADMINISTRADOR")
+                .requestMatchers("/profesor/aprobar/**", "/profesor/rechazar/**").hasRole("ADMINISTRADOR")
+                .requestMatchers("/tarea/estudiantesTarea", "/tarea/eliminar", "/tarea/modificar", "/tarea/agregar").hasAnyRole("ADMINISTRADOR", "PROFESOR") // Acceso para ADMINISTRADOR y PROFESOR
+                // Ruta para calificaciones
+                .requestMatchers("/calificacion/listado").hasAnyRole("ADMINISTRADOR", "PROFESOR", "ESTUDIANTE")
+                .requestMatchers("/calificacion/modificar/**").hasAnyRole("ADMINISTRADOR", "PROFESOR")
+                // Rutas accesibles por ADMINISTRADOR y PROFESOR para tareas
+                .requestMatchers("/tarea/vertareas").hasAnyRole("ADMINISTRADOR", "PROFESOR")
+                // Permitir acceso a cualquier otra ruta sin autenticación
+                .anyRequest().permitAll()
+                )
+                .formLogin((form) -> form
+                .loginPage("/login").permitAll()
+                )
+                .logout((logout) -> logout.permitAll());
 
-    return http.build();
-}
-
-
-
-
-
-
+        return http.build();
+    }
 
     @Bean
     public UserDetailsService users() {
