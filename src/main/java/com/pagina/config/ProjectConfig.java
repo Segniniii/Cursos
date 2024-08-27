@@ -66,7 +66,7 @@ public class ProjectConfig implements WebMvcConfigurer {
         http
                 .authorizeHttpRequests((requests) -> requests
                 // Rutas accesibles por ADMINISTRADOR, PROFESOR, ESTUDIANTE
-                .requestMatchers("/grupo/vergrupos", "/curso/vercursos", "/tarea/vertareas").hasAnyRole("ADMINISTRADOR", "PROFESOR", "ESTUDIANTE")
+                .requestMatchers("/grupo/vergrupos", "/curso/vercursos", "/tarea/vertareas","/calificacion/listado").hasAnyRole("ADMINISTRADOR", "PROFESOR", "ESTUDIANTE")
                 // Rutas accesibles solo por ADMINISTRADOR
                 .requestMatchers("/profesor/verprofesores", "/profesor/postulaciones", "/usuario/listado").hasRole("ADMINISTRADOR")
                 .requestMatchers("/curso/a").hasRole("ADMINISTRADOR")
