@@ -23,7 +23,7 @@
             </div>
         </section>
 
-        
+
 
         <!-- 2 Sección principal para mostrar la informaccion de la entidad usuario -->
         <section th:fragment="listadoUsuarios" id="usuarios">
@@ -40,7 +40,7 @@
                                         <tr><th>N</th>
                                             <th>Nombre de usuario</th>
                                             <th>Nombre</th>
-                                           
+
                                             <th>Acciones</th>
                                             <th></th></tr>
                                     </thead>
@@ -48,9 +48,9 @@
                                         <tr th:each="usuario, contador : ${usuarios}">
                                             <td>[[${contador.count}]]</td>
                                             <td>[[${usuario.username}]]</td>
-                                           
+
                                             <td>[[${usuario.nombre}]]</td>
-                                            
+
                                             <td sec:authorize="hasRole('ADMINISTRADOR')">
                                                 <a th:href="@{/usuario/eliminar/}+${usuario.idUsuario}"
                                                    class="btn btn-danger"> Eliminar</a>
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </section>
@@ -114,7 +114,12 @@
                                                     <input type="tel" class="form-control" 
                                                            name="telefono" th:field="*{telefono}">
                                                 </div>
-                                                
+                                                <div class="mb-3">
+                                                    <label for="imagen">Imagen</label>
+                                                    <input class="form-control" type="file" name="imagenFile"
+                                                           onchange="readURL(this);"/>
+                                                    <img id="blah" src="#" alt="your image" height="200"/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -131,18 +136,18 @@
                 <div class="row">
                     <div class="col-md-4 d-grid">
                         <a th:href="@{/usuario/listado}" class="btn btn-warning">
-                             Regresar
+                            Regresar
                         </a>
                     </div>
                     <div class="col-md-4 d-grid" sec:authorize="hasRole('ADMINISTRADOR')">                                
                         <a th:href="@{/usuario/eliminar/}+${usuario.idUsuario}"
                            class="btn btn-danger">
-                             Eliminar
+                            Eliminar
                         </a>
                     </div>
                     <div class="col-md-4 d-grid" sec:authorize="hasRole('ADMINISTRADOR')">
                         <button type="submit" class="btn btn-success">
-                             Guardar
+                            Guardar
                         </button>
                     </div>
                 </div>
