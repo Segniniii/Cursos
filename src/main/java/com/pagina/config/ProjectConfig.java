@@ -1,4 +1,4 @@
-package com.pagina;
+package com.pagina.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -66,10 +66,12 @@ public class ProjectConfig implements WebMvcConfigurer {
         http
                 .authorizeHttpRequests((requests) -> requests
                 // Rutas accesibles por ADMINISTRADOR, PROFESOR, ESTUDIANTE
-                .requestMatchers("/grupo/vergrupos", "/curso/vercursos").hasAnyRole("ADMINISTRADOR", "PROFESOR", "ESTUDIANTE")
+                .requestMatchers("/grupo/vergrupos", "/curso/vercursos", "/tarea/vertareas").hasAnyRole("ADMINISTRADOR", "PROFESOR", "ESTUDIANTE")
                 // Rutas accesibles solo por ADMINISTRADOR
                 .requestMatchers("/profesor/verprofesores", "/profesor/postulaciones", "/usuario/listado").hasRole("ADMINISTRADOR")
                 .requestMatchers("/curso/a").hasRole("ADMINISTRADOR")
+                // Rutas accesibles solo por ESTUDIANTE
+                .requestMatchers("/grupo/vergrupos", "/curso/vercursos", "/tarea/vertareas", "/asistencia/verAsistencia", "/calificacion/listado").hasRole("ESTUDIANTE")
                 // Rutas accesibles por ADMINISTRADOR y PROFESOR
                 .requestMatchers("/estudiante/verEstudiantes").hasAnyRole("ADMINISTRADOR", "ESTUDIANTE", "PROFESOR")
                 .requestMatchers("/estudiante/modificar/**").hasAnyRole("ADMINISTRADOR", "PROFESOR")
@@ -80,7 +82,7 @@ public class ProjectConfig implements WebMvcConfigurer {
                 .requestMatchers("/calificacion/listado").hasAnyRole("ADMINISTRADOR", "PROFESOR", "ESTUDIANTE")
                 .requestMatchers("/calificacion/modificar/**").hasAnyRole("ADMINISTRADOR", "PROFESOR")
                 // Rutas accesibles por ADMINISTRADOR y PROFESOR para tareas
-                .requestMatchers("/tarea/vertareas").hasAnyRole("ADMINISTRADOR", "PROFESOR")
+                .requestMatchers("/tarea/**").hasAnyRole("ADMINISTRADOR", "PROFESOR")
                 // Permitir acceso a cualquier otra ruta sin autenticación
                 .anyRequest().permitAll()
                 )
@@ -95,32 +97,31 @@ public class ProjectConfig implements WebMvcConfigurer {
     @Bean
     public UserDetailsService users() {
         UserDetails admin = User.builder()
-                .username("juan")
+                .username("gabriel")
                 .password(passwordEncoder().encode("123"))
                 .roles("ADMINISTRADOR")
                 .build();
         UserDetails profesor = User.builder()
-                .username("rebeca")
+                .username("sebastian")
                 .password(passwordEncoder().encode("456"))
                 .roles("PROFESOR")
                 .build();
-        UserDetails estudiante = User.builder()
-                .username("pedro")
+        UserDetails estudiante1 = User.builder()
+                .username("matias")
                 .password(passwordEncoder().encode("789"))
                 .roles("ESTUDIANTE")
                 .build();
-        return new InMemoryUserDetailsManager(admin, profesor, estudiante);
+        return new InMemoryUserDetailsManager(admin, profesor, estudiante1);
     }
 
-    @Autowired
+     @Autowired
     private UserDetailsService userDetailsService;
 
     @Autowired
     public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
         build.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
-
-    @Bean
+     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }

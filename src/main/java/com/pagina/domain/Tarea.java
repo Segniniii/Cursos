@@ -9,13 +9,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+
 import jakarta.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+
 
 /**
  *
@@ -32,29 +30,28 @@ public class Tarea implements Serializable {
     @Column(name = "id_Tarea")
 
     private Long idTarea;
-    private Date fechaInicio;
-    private Date fechaEntrega;
-    private byte[] documento;
+    private LocalDate fechaInicio;
+    private LocalDate fechaEntrega;
+    private String asignacion;
 
     public Tarea() {
     }
 
-    public Tarea(Date fechaInicio, Date fechaEntrega, byte[] documento) {
+    public Tarea(LocalDate fechaInicio, LocalDate fechaEntrega, String asignacion) {
         this.fechaInicio = fechaInicio;
         this.fechaEntrega = fechaEntrega;
-        this.documento = documento;
-    }
-//aqui seria estudiante y la base de datos
-   //fdsafsdfsdaf
-
-    public byte[] getDocumento() {
-        return documento;
+        this.asignacion = asignacion;
     }
 
-    public void setDocumento(byte[] documento) {
-        this.documento = documento;
+    
+
+    public String getAsignacion() {
+        return asignacion;
     }
 
+    public void setAsignacion(String asignacion) {
+        this.asignacion = asignacion;
+    }
 
 
     public Long getIdTarea() {
@@ -65,20 +62,22 @@ public class Tarea implements Serializable {
         this.idTarea = idTarea;
     }
 
-    public Date getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaEntrega() {
+    public LocalDate getFechaEntrega() {
         return fechaEntrega;
     }
 
-    public void setFechaEntrega(Date fechaEntrega) {
+    public void setFechaEntrega(LocalDate fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
+
+   
 
 }

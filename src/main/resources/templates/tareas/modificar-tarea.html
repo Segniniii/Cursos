@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/plantilla :: head">
+        <title>Modificar Tarea</title>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                </head>
+                <body>
+                    <header th:replace="layout/plantilla :: header"></header>
+                    <section class="container my-4">
+                        <h2>Modificar Tarea</h2>
+                        <form th:action="@{/tarea/guardar}" th:object="${tarea}" method="post">
+                            <div class="mb-3">
+                                <label for="idTarea" class="form-label">ID del Tarea</label>
+                                <input type="hidden" id="idTarea" th:field="*{idTarea}" class="form-control" readonly />
+                            </div>
+                            <div class="mb-3">
+                                <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+                                <input type="date" id="fechaInicio" th:field="*{fechaInicio}" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="fechaEntrega" class="form-label">Fecha de Entrega</label>
+                                <input type="date" id="fechaEntrega" th:field="*{fechaEntrega}" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="asignacion" class="form-label">Asignación</label>
+                                <input type="text" id="asignacion" th:field="*{asignacion}" class="form-control" placeholder="Nombre del asignación o URL" />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                            <a href="#" th:href="@{/tarea/vertareas}" class="btn btn-secondary">Cancelar</a>
+                        </form>
+                    </section>
+
+                    <footer th:replace="layout/plantilla :: footer"></footer>
+                </body>
+                </html>

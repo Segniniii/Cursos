@@ -42,6 +42,25 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" th:href="@{/tarea/vertareas}">Tareas</a>
                 </li>
+                <div>
+                    <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
+                        <li class="nav-item px-2">
+                            <a class="nav-menu-link nav-link" th:href="@{/login}">
+                                <i class='fas fa-sign-in-alt text-white'></i>
+                            </a>
+                        </li>                            
+                    </ul>
+                    <ul class="navbar-nav" sec:authorize="isAuthenticated()">
+                        
+                        <li class="nav-item my-auto">
+                            <form method="post" th:action="@{/logout}">
+                                <button class="btn btn-danger">
+                                    <i class="fas fa-sign-out-alt text-white"></i>
+                                </button>
+                            </form>
+                        </li>                            
+                    </ul>
+                </div> 
             </ul>
         </header>
 

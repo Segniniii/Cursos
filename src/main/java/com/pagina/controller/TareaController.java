@@ -5,7 +5,7 @@
 package com.pagina.controller;
 
 import com.pagina.domain.Tarea;
-import com.pagina.service.CalificacionService;
+
 import com.pagina.service.TareaService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -28,8 +28,6 @@ public class TareaController {
     @Autowired
     private TareaService tareaService;
 
-    
-
     @GetMapping("/vertareas")
     public String inicio(Model model) {
         List<Tarea> tareas = tareaService.getTareas();
@@ -38,8 +36,13 @@ public class TareaController {
         return "/tareas/lista-tareas";
     }
 
-   
-    
+    @GetMapping("/vistaTarea/{idTarea}")
+    public String inicio(Tarea tarea, Model model) {
+        tarea = tareaService.getTarea(tarea);
+        model.addAttribute("tarea", tarea);
+        return "/tareas/vista-tarea";
+    }
+
     @GetMapping("/agregar")
     public String tareaNuevo(Tarea tarea) {
         return "/tareas/agregar-tarea";
@@ -61,6 +64,6 @@ public class TareaController {
     public String tareaModificar(Tarea tarea, Model model) {
         tarea = tareaService.getTarea(tarea);
         model.addAttribute("tarea", tarea);
-        return "/tareas/modifica-tarea";
+        return "/tareas/modificar-tarea";
     }
 }
