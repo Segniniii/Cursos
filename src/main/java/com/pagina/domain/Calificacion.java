@@ -40,7 +40,7 @@ public class Calificacion implements Serializable{
     @JoinColumn(name = "id_estudiante")
     Estudiante estudiante;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_Tarea")
     Tarea tarea;
 

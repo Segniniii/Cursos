@@ -15,6 +15,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -33,30 +34,28 @@ public class Tarea implements Serializable {
     private Long idTarea;
     private Date fechaInicio;
     private Date fechaEntrega;
+    private byte[] documento;
 
     public Tarea() {
     }
 
-    @ManyToOne
-    @JoinColumn(name = "id_estudiante")
-    Estudiante estudiante;
-
-    public Tarea(Date fechaInicio, Date fechaEntrega, Estudiante estudiante) {
+    public Tarea(Date fechaInicio, Date fechaEntrega, byte[] documento) {
         this.fechaInicio = fechaInicio;
         this.fechaEntrega = fechaEntrega;
-       
-        this.estudiante = estudiante;
+        this.documento = documento;
+    }
+//aqui seria estudiante y la base de datos
+   
+
+    public byte[] getDocumento() {
+        return documento;
     }
 
-    public Estudiante getEstudiante() {
-        return estudiante;
+    public void setDocumento(byte[] documento) {
+        this.documento = documento;
     }
 
-    public void setEstudiante(Estudiante estudiante) {
-        this.estudiante = estudiante;
-    }
 
-    
 
     public Long getIdTarea() {
         return idTarea;
@@ -81,7 +80,5 @@ public class Tarea implements Serializable {
     public void setFechaEntrega(Date fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
-
-   
 
 }
