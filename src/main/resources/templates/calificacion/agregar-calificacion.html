@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/plantilla :: head">
+        <title>Calificacion</title>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                </head>
+                <body>
+                    <header th:replace="layout/plantilla :: header"></header>
+
+                    <section th:fragment="agregarCalificacion">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-8">
+                                    <div class="card mt-5">
+                                        <div class="card-header">
+                                            <h3>Agregar Calificacion</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <form th:action="@{/calificacion/guardar}" th:object="${calificacion}" method="post">
+
+                                                
+                                                <div class="mb-3">
+                                                    <label for="estudianteSelect" class="form-label">Estudiante</label>
+                                                    <select class="form-select" id="estudianteSelect" th:field="*{estudiante.idEstudiante}" required>
+                                                        <option value="" disabled selected>Selecciona un estudiante</option>
+                                                        <option th:each="estudiante : ${estudiantes}"
+                                                                th:value="${estudiante.idEstudiante}"
+                                                                th:text="${estudiante.NombreEstudiante}"></option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        <span th:errors="*{estudiante.idEstudiante}">Por favor, selecciona un estudiante.</span>
+                                                    </div>
+                                                </div>
+
+                                                
+                                                <div class="mb-3">
+                                                    <label for="tareaSelect" class="form-label">Tarea</label>
+                                                    <select class="form-select" id="tareaSelect" th:field="*{tarea.idTarea}" required>
+                                                        <option value="" disabled selected>Selecciona una tarea</option>
+                                                        <option th:each="tarea : ${tareas}"
+                                                                th:value="${tarea.idTarea}"
+                                                                th:text="${tarea.idTarea}"></option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        <span th:errors="*{tarea.idTarea}">Por favor, selecciona una tarea.</span>
+                                                    </div>
+                                                </div>
+
+                                                
+                                                <div class="mb-3">
+                                                    <label for="calificacionInput" class="form-label">Calificación</label>
+                                                    <input type="number" step="0.01" class="form-control" id="calificacionInput" 
+                                                           th:field="*{calificacion}" 
+                                                           min="0" max="100.00" required/>
+                                                    <div class="invalid-feedback">
+                                                        <span th:errors="*{calificacion}">Por favor, introduzca una calificación entre 0 y 100.00.</span>
+                                                    </div>
+                                                </div>
+
+                                                
+                                                <div class="mb-3">
+                                                    <label for="revisadoInput" class="form-label">Revisado</label>
+                                                    <select class="form-select" id="revisadoInput" th:field="*{revisado}">
+                                                        <option value="true">Sí</option>
+                                                        <option value="false">No</option>
+                                                    </select>
+                                                </div>
+
+                                                <!-- Botones -->
+                                                <div class="mb-3">
+                                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                                    <a href="#" th:href="@{/calificacion/listado}" class="btn btn-secondary">Cancelar</a>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <footer th:replace="layout/plantilla :: footer"></footer>
+                </body>
+                </html>
