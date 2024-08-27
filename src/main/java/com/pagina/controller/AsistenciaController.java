@@ -1,7 +1,9 @@
 package com.pagina.controller;
 
 import com.pagina.domain.Asistencia;
+import com.pagina.domain.Estudiante;
 import com.pagina.service.AsistenciaService;
+import com.pagina.service.EstudianteService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class AsistenciaController {
     @Autowired
     private AsistenciaService asistenciaService;
 
+    @Autowired
+    private EstudianteService estudianteService;
+    
     @GetMapping("/verAsistencias")
     public String inicio(Model model) {
         List<Asistencia> asistencias = asistenciaService.getAsistencias();
@@ -27,7 +32,9 @@ public class AsistenciaController {
     }
 
     @GetMapping("/agregar")
-    public String asistenciaNuevo(Asistencia asistencia) {
+    public String asistenciaNuevo(Asistencia asistencia,Model model) {
+        List<Estudiante> estudiantes = estudianteService.getEstudiantes();
+        model.addAttribute("estudiantes", estudiantes);
         return "/asistencias/agregar-asistencia";
     }
 
@@ -45,6 +52,8 @@ public class AsistenciaController {
 
     @GetMapping("/modificar/{idAsistencia}")
     public String asistenciaModificar(Asistencia asistencia, Model model) {
+        List<Estudiante> estudiantes = estudianteService.getEstudiantes();
+        model.addAttribute("estudiantes", estudiantes);
         asistencia = asistenciaService.getAsistencia(asistencia);
         model.addAttribute("asistencia", asistencia);
         return "/asistencias/modifica-asistencia";

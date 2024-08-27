@@ -18,20 +18,31 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="mb-3">
-                                            <h4 class="card-title">Estudiante: <span th:text="${estudiante.idEstudiante}">ID</span></h4>
+                                            <h4 class="card-title">Estudiante ID: <span th:text="${estudiante.idEstudiante}">ID</span></h4>
                                         </div>
                                         <form th:action="@{/estudiante/guardar}" th:object="${estudiante}" method="post">
                                             <div class="mb-3">
-                                                <div class="mb-3">
-                                                    <label for="idEstudiante" class="form-label"></label>
-                                                    <input type="hidden" id="idEstudiante" th:field="*{idEstudiante}" class="form-control" placeholder="ID del Estudiante">
 
+                                                <div class="modal-body">
+                                                    <div class="mb-3">
+                                                        <label for="idEstudiante" class="form-label"></label>
+                                                        <input type="hidden" id="idEstudiante" th:field="*{idEstudiante}" class="form-control" placeholder="ID del Estudiante">
+                                                    </div>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="idGrupo" class="form-label">Grupo al que pertenece</label>
-                                                    <input type="text" id="idGrupo" name="grupo.idGrupo" class="form-control" 
-                                                           th:field="*{grupo.idGrupo}" placeholder="Ingrese el ID del grupo" >
+                                                    <label for="grupoSelect" class="form-label">Grupo</label>
+                                                    <select class="form-select" id="grupoSelect" th:field="*{grupo.idGrupo}" required>
+                                                        <option value="" disabled selected>Selecciona un grupo</option>
+                                                        <option th:each="grupo : ${grupos}"
+                                                                th:value="${grupo.idGrupo}"
+                                                                th:text="${grupo.idGrupo}"></option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        <span th:errors="*{grupo.idGrupo}">Por favor, selecciona un Grupo.</span>
+                                                    </div>
                                                 </div>
+
+
                                                 <div class="mb-3">
                                                     <label for="nombreEstudiante" class="form-label">Nombre completo</label>
                                                     <input type="text" id="nombreEstudiante" th:field="*{nombreEstudiante}" class="form-control" placeholder="Nombre completo" required>
@@ -41,7 +52,7 @@
                                                     <button type="submit" class="btn btn-primary">Guardar</button>
                                                     <a href="#" th:href="@{/estudiante/verEstudiantes}" class="btn btn-secondary">Cancelar</a>
                                                 </div>
-                                                </div>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>

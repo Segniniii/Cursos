@@ -14,7 +14,9 @@
                                 <div class="col-md-9">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h4>lista de asistencia</h4></div>
+                                            <h4>lista de asistencia</h4>
+                                            <a th:href="@{/asistencia/agregar}" class="btn btn-primary mb-3">Agregar Asistencia</a>
+                                        </div>
                                         <div th:if="${asistencias != null and !asistencias.empty}">
                                             <table class="table table-striped table-hover">
                                                 <thead class="table-primary">
@@ -22,14 +24,21 @@
                                                         <th class="text-center">Nombre</th>   
                                                         <th class="text-center">Fecha</th>   
                                                         <th class="text-center">Estado asistencia</th>   
+                                                        <th class="text-center">Acciones</th>  
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr th:each="asistencia : ${asistencias}">
-                                                        
+
                                                         <td th:text="${asistencia.estudiante.getNombreEstudiante()}" class="text-center">Nombre Estudiante</td>
                                                         <td th:text="${asistencia.getFecha()}" class="text-center">fecha</td>
                                                         <td th:text="${asistencia.isAsistio() ? 'Asistió' : 'No asistió'}" class="text-center"></td>
+                                                        <td>
+
+
+                                                            <a th:href="@{/asistencia/modificar/{idAsistencia}(idAsistencia=${asistencia.idAsistencia})}" class="btn btn-warning btn-sm">Modificar</a>
+                                                            <a th:href="@{/asistencia/eliminar/{idAsistencia}(idAsistencia=${asistencia.idAsistencia})}" class="btn btn-danger btn-sm">Eliminar</a>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>

@@ -19,19 +19,19 @@ public class Asistencia implements Serializable {
     private boolean asistio;
     private LocalDate fecha; 
 
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
+   
     
     @ManyToOne
     @JoinColumn(name = "id_estudiante")
     Estudiante estudiante;
 
     public Asistencia() {
+    }
+
+    public Asistencia(boolean asistio, LocalDate fecha, Estudiante estudiante) {
+        this.asistio = asistio;
+        this.fecha = fecha;
+        this.estudiante = estudiante;
     }
 
     public Long getIdAsistencia() {
@@ -50,13 +50,22 @@ public class Asistencia implements Serializable {
         this.asistio = asistio;
     }
 
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
     public Estudiante getEstudiante() {
         return estudiante;
     }
 
-    public void setEstudiantes(Estudiante estudiante) {
+    public void setEstudiante(Estudiante estudiante) {
         this.estudiante = estudiante;
     }
+
 
     
 

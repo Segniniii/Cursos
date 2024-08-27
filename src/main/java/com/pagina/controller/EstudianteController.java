@@ -1,7 +1,9 @@
 package com.pagina.controller;
 
 import com.pagina.domain.Estudiante;
+import com.pagina.domain.Grupo;
 import com.pagina.service.EstudianteService;
+import com.pagina.service.GrupoService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class EstudianteController {
     @Autowired
     private EstudianteService estudianteService;
 
+    @Autowired
+    private GrupoService grupoService;
+    
     @GetMapping("/verEstudiantes")
     public String inicio(Model model) {
         List<Estudiante> estudiantes = estudianteService.getEstudiantes();
@@ -28,7 +33,9 @@ public class EstudianteController {
     }
 
     @GetMapping("/agregar")
-    public String estudianteNuevo(Estudiante estudiante) {
+    public String estudianteNuevo(Estudiante estudiante,Model model) {
+        List<Grupo> grupos = grupoService.getGrupos();
+        model.addAttribute("grupos", grupos);
         return "/estudiantes/agregar-estudiante";
     }
 
@@ -48,6 +55,8 @@ public class EstudianteController {
 
     @GetMapping("/modificar/{idEstudiante}")
     public String estudianteModificar(Estudiante estudiante, Model model) {
+        List<Grupo> grupos = grupoService.getGrupos();
+        model.addAttribute("grupos", grupos);
         estudiante = estudianteService.getEstudiante(estudiante);
         model.addAttribute("estudiante", estudiante);
         return "/estudiantes/modifica-estudiante";

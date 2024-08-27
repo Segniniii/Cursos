@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/plantilla :: head">
+        <title>Grupo</title>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                </head>
+                <body>
+                    <header th:replace="layout/plantilla :: header"></header>
+
+                    <section th:fragment="agregar-asistencia" id="agregar">
+                        <div class="container">
+                            <h2>Agregar Asistencia</h2>
+                            <form th:action="@{/asistencia/guardar}" th:object="${asistencia}" method="post">
+
+                                <div class="mb-3">
+                                    <label for="estudianteSelect" class="form-label">Estudiante</label>
+                                    <select class="form-select" id="estudianteSelect" th:field="*{estudiante.idEstudiante}" required>
+                                        <option value="" disabled selected>Selecciona un estudiante</option>
+                                        <option th:each="estudiante : ${estudiantes}"
+                                                th:value="${estudiante.idEstudiante}"
+                                                th:text="${estudiante.NombreEstudiante}"></option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        <span th:errors="*{estudiante.idEstudiante}">Por favor, selecciona un estudiante.</span>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="asistio" class="form-label">Asistió</label>
+                                    <select id="asistio" th:field="*{asistio}" class="form-select" required>
+                                        <option value="true">Sí</option>
+                                        <option value="false">No</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="fecha" class="form-label">Fecha</label>
+                                    <input type="date" id="fecha" th:field="*{fecha}" class="form-control" required />
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <a href="#" th:href="@{/asistencia/verAsistencias}" class="btn btn-secondary">Cancelar</a>
+                            </form>
+                        </div>
+                    </section>
+                    <footer th:replace="layout/plantilla :: footer"></footer>
+                </body>
+                </html>
